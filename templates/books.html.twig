@@ -2,10 +2,10 @@
     {% block content %}
         {% for key,book in books %}
                 <h1>{{ book.title|upper }}</h1>
-                <p>{{ book.author|upper }}</p>
+                <p>Auteur : {{ book.author|upper }}</p>
                 <p>Resumé : {{ book.resume }}</p>
                 <p>{{ book.nbPages }}</p>
-                <a href="{{ path ('book', {'id': key + 1 }) }}">Details</a>
+                <a href="{{ path ('book', {'id': book.id }) }}">Details</a>
         {% endfor %}
     {% endblock %}
 
