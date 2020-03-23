@@ -35,11 +35,13 @@ class HomeController extends AbstractController
         ]);
 
     }
+    //je fais une nouvelle route avec une wild card
     /**
      * @route("/book/{id}", name="book")
      */
     public function book(BookRepository $bookRepository, $id)
     {
+        //je viens récuperer mes données exactementy comme precedement
         $books = $bookRepository->find($id);
 
             return $this->render('book.html.twig', [
