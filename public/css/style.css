@@ -2,3 +2,7 @@ body{
     background-color: #8959A8;
     text-align: center;
 }
+.article{
+    border:3px solid black;
+    margin: 15px 450px;
+}
