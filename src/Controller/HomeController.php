@@ -41,7 +41,7 @@ class HomeController extends AbstractController
      */
     public function book(BookRepository $bookRepository, $id)
     {
-        //je viens récuperer mes données exactementy comme precedement
+        //je viens récuperer mes données exactement comme precedement
         $books = $bookRepository->find($id);
 
             return $this->render('book.html.twig', [

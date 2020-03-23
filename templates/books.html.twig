@@ -1,14 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{{ asset ('css/style.css') }}">
-        <title>Document</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+    {% block content %}
         {% for key,book in books %}
                 <h1>{{ book.title|upper }}</h1>
                 <p>{{ book.author|upper }}</p>
@@ -16,6 +7,6 @@
                 <p>{{ book.nbPages }}</p>
                 <a href="{{ path ('book', {'id': key + 1 }) }}">Details</a>
         {% endfor %}
-</body>
-</html>
+    {% endblock %}
+
 
