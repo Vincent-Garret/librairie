@@ -50,20 +50,27 @@ class BookController extends AbstractController
                 'books' => $books
         ]);
     }
+
     /**
      * @route("/book/insert", name="book_insert")
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return Response
      */
-    public function insertBook(EntityManagerInterface $entityManager)
+    public function insertBook(EntityManagerInterface $entityManager, Request $request)
     {
         //inserer un livre en BDD
         //je fais un nouveau livre en créant un enregistrement
         $book = new Book();
-
+        $title = $request->query->get( 'title');
+        $author = $request->query->get( 'author');
+        $nbPages = $request->query->get('nbPages');
+        $resume = $request->query->get('resume');
         //je set mes parametres du livre en utilisant les seteur de mon entité
-        $book->setTitle('Remi');
-        $book->setAuthor('David');
-        $book->setNbPages(1);
-        $book->setResume('Comment Remi triche pour finir plus vite');
+        $book->setTitle($title);
+        $book->setAuthor($author);
+        $book->setNbPages($nbPages);
+        $book->setResume($resume);
 
         //j'utilise entitymanager pour sauvegarder mon entité
         $entityManager->persist($book);
