@@ -118,10 +118,11 @@ class BookController extends AbstractController
     /**
      * @route("/book/search", name="book_search")
      */
-    public  function searchByResume(BookRepository $bookRepository)
+    public  function searchByResume(BookRepository $bookRepository, Request $request)
     {
-        $word='chine';
-        $books = $bookRepository->getByWordInResume($word);
+        $search = $request->get('search');
+
+        $books = $bookRepository->getByWordInResume($search);
 
         return $this->render('books.html.twig', [
             'books' => $books
