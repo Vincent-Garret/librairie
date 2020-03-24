@@ -62,4 +62,20 @@ class Book
     {
         return $this->nbPages;
     }
+    public function setTitle($title): ?string
+    {
+        return $this->title = $title;
+    }
+    public function setResume($resume): ?string
+    {
+        return $this->resume = $resume;
+    }
+    public function setAuthor($author): ?string
+    {
+        return $this->author = $author;
+    }
+    public function setNbPages($nbPages): ?int
+    {
+        return $this->nbPages = $nbPages;
+    }
 }

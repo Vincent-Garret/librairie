@@ -6,7 +6,9 @@ namespace App\Controller;
 // je fais un "use" vers le namespace (qui correspond au chemin) de la classe "Route"
 // ça correspond à un import ou un require en PHP
 // pour pouvoir utiliser cette classe dans mon code
+use App\Entity\Book;
 use App\Repository\BookRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +39,7 @@ class BoucleController extends AbstractController
     }
     //je fais une nouvelle route avec une wild card
     /**
-     * @route("/book/{id}", name="book")
+     * @route("/book/show/{id}", name="book")
      */
     public function book(BookRepository $bookRepository, $id)
     {
@@ -47,6 +49,26 @@ class BoucleController extends AbstractController
             return $this->render('book.html.twig', [
                 'books' => $books
         ]);
+    }
+    /**
+     * @route("/book/insert", name="book_insert")
+     */
+    public function insertBook(EntityManagerInterface $entityManager)
+    {
+        //inserer un livre en BDD
+        //je fais un nouveau livre en créant un enregistrement
+        $book = new Book();
+
+        //je set mes parametres du livre en utilisant les seteur de mon entité
+        $book->setTitle('Remi');
+        $book->setAuthor('David');
+        $book->setNbPages(1);
+        $book->setResume('Comment Remi triche pour finir plus vite');
+
+        //j'utilise entitymanager pour sauvegarder mon entité
+        $entityManager->persist($book);
+        $entityManager->flush();
+        return new Response('livre enregistré');
     }
 
 
