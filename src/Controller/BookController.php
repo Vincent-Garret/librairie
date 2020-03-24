@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// je créé ma classe BoucleController et je la nomme de la même manière que mon fichier
-class BoucleController extends AbstractController
+// je créé ma classe BookController et je la nomme de la même manière que mon fichier
+class BookController extends AbstractController
 {
 
     /**
