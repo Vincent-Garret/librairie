@@ -98,5 +98,21 @@ class BookController extends AbstractController
 
         return new Response('livre supprimé');
     }
+    /**
+     * @route("book/update/{id}", name="book_update")
+     */
+    public function updateBook(BookRepository $bookRepository, $id, EntityManagerInterface $entityManager)
+    {
+        //recuperer un livre en bdd
+        $book = $bookRepository->find($id);
+        //avec l'entite recupéré on utilise les setteur pour modifier les champs souhaiter
+        $book->setTitle('titre modifié');
+
+        //on reenregistre le livre
+        $entityManager->persist($book);
+        $entityManager->flush();
+
+        return new Response('le livre a bien été modifié');
+    }
 
 }
