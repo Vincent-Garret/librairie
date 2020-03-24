@@ -115,4 +115,16 @@ class BookController extends AbstractController
         return new Response('le livre a bien été modifié');
     }
 
+    /**
+     * @route("/book/search", name="book_search")
+     */
+    public  function searchByResume(BookRepository $bookRepository)
+    {
+        $books = $bookRepository->getByWordInResume();
+
+        return $this->render('books.html.twig', [
+            'books' => $books
+        ]);
+    }
+
 }

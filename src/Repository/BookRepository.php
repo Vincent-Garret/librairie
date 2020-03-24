@@ -47,4 +47,23 @@ class BookRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getByWordInResume()
+    {
+        //je defini le mot a rechercher dans la colonne résume
+        $word = 'japon';
+
+        //jutilise le queryBuilder qui me permet de créer mes requete select en base de donnée
+        //je place en parametre une letttre ou un mot qui fera office d'alias pour ma table
+        $queryBuilder = $this->createQueryBuilder('book');
+        //je défini une clause WHERE avec un like dans la column résume
+        $query = $queryBuilder->select('book')
+            ->where('book.resume LIKE :word')
+            //j'utilise set parameter pour que la variable soit sécurisé
+            ->setParameter('word', '%'.$word.'%')
+            ->getQuery();
+
+        //j'execute puis je retourne le résultat
+        $results = $query->getResult();
+        return $results;
+    }
 }
