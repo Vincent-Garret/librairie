@@ -77,6 +77,21 @@ class BookController extends AbstractController
         $entityManager->flush();
         return new Response('livre enregistré');
     }
+    /**
+     * @route("/book/delete", name="book_delete")
+     */
+    public function deleteBook(BookRepository $bookRepository, EntityManagerInterface $entityManager)
+    {
+        //jefface un book
+        //je reupere un element qui sera une entite
+        //et je stock dans une variable
+        $book = $bookRepository->find(1);
 
+        $entityManager->remove($book);
+
+        $entityManager->flush();
+
+        return new Response('livre supprimé');
+    }
 
 }
