@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
     {% block content %}
+        <div class=" articles">
         {% for book in books %}
             <div class = "article">
                 <h1>{{ book.title|upper }}</h1>
@@ -11,6 +12,7 @@
                 <a href="{{ path ('book_delete', {'id': book.id }) }}">effacer livre</a>
             </div>
         {% endfor %}
+        </div>
     {% endblock %}
 
 
