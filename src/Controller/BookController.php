@@ -124,7 +124,7 @@ class BookController extends AbstractController
 
         return $this->render('books.html.twig', [
             'books' => $books
-        ]);
+        ]); 
     }
 
 }
