@@ -47,10 +47,10 @@ class BookRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function getByWordInResume()
+    public function getByWordInResume($word)
     {
         //je defini le mot a rechercher dans la colonne résume
-        $word = 'japon';
+
 
         //jutilise le queryBuilder qui me permet de créer mes requete select en base de donnée
         //je place en parametre une letttre ou un mot qui fera office d'alias pour ma table

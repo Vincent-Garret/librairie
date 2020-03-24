@@ -120,11 +120,12 @@ class BookController extends AbstractController
      */
     public  function searchByResume(BookRepository $bookRepository)
     {
-        $books = $bookRepository->getByWordInResume();
+        $word='chine';
+        $books = $bookRepository->getByWordInResume($word);
 
         return $this->render('books.html.twig', [
             'books' => $books
-        ]); 
+        ]);
     }
 
 }
