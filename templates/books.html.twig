@@ -7,6 +7,8 @@
                 <p>Resumé : {{ book.resume }}</p>
                 <p>{{ book.nbPages }}</p>
                 <a href="{{ path ('book', {'id': book.id }) }}">Details</a>
+                <br/>
+                <a href="{{ path ('book_delete', {'id': book.id }) }}">effacer livre</a>
             </div>
         {% endfor %}
     {% endblock %}
