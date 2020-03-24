@@ -10,6 +10,8 @@
                 <a href="{{ path ('book', {'id': book.id }) }}">Details</a>
                 <br/>
                 <a href="{{ path ('book_delete', {'id': book.id }) }}">effacer livre</a>
+                <br/>
+                <a href="{{ path ('book_update', {'id': book.id }) }}">modifier titre livre</a>
             </div>
         {% endfor %}
         </div>
