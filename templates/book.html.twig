@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block content %}
-    <h1>{{ books.title|upper}}</h1>
-    <p>Auteur : {{ books.author|upper }}</p>
-    <p>Résumé : {{ books.resume }}</p>
-    <p>{{ books.nbPages }}</p>
+    <div class = "article">
+        <h1>{{ books.title|upper}}</h1>
+        <p>Auteur : {{ books.author|upper }}</p>
+        <p>Résumé : {{ books.resume }}</p>
+        <p>{{ books.nbPages }}</p>
+    </div>
 {% endblock %}
 
