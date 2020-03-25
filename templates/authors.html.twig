@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+    {% block content %}
+        <form action="{{ path ('author_search') }}" method="get">
+            <input type="search" name="search">
+            <input type="submit" value="rechercher">
+        </form>
+        <div class=" articles">
+            {% for author in authors %}
+                <div class = "article">
+                    <h1>{{ author.name|upper }}</h1>
+                    <p>{{ author.firstName|upper }}</p>
+                    <p>{{ author.birthDate|date }}</p>
+                    <p>{{ author.deathDate|date }}</p>
+                    <p>{{ author.biography }}</p>
+                    <a href="{{ path ('author', {'id': author.id }) }}">Details</a>
+                    <br/>
+                    <a href="{{ path ('author_delete', {'id': author.id }) }}">effacer author</a>
+                    <br/>
+                    <a href="{{ path ('author_update', {'id': author.id }) }}">modifier nom auteur</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}

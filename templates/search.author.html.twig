@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <h1>Les auteurs recherchés</h1>
+    <p>les auteurs affiché contiennent le mot {{ search }} dans la biographie</p>
+    <div class="articles">
+        {% for author in authors %}
+            <div class="article">
+                <h1>{{ author.name|upper }}</h1>
+                <p>Auteur : {{ author.firstName|upper }}</p>
+                <p>Resumé : {{ author.birthDate|date }}</p>
+                <p>{{ author.deathDate|date }}</p>
+                <p>{{ author.biography }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

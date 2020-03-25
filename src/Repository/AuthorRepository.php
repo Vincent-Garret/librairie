@@ -47,4 +47,23 @@ class AuthorRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getByWordInBiography($word)
+    {
+        //je defini le mot a rechercher dans la colonne résume
+
+
+        //jutilise le queryBuilder qui me permet de créer mes requete select en base de donnée
+        //je place en parametre une letttre ou un mot qui fera office d'alias pour ma table
+        $queryBuilder = $this->createQueryBuilder('author');
+        //je défini une clause WHERE avec un like dans la column résume
+        $query = $queryBuilder->select('author')
+            ->where('author.biography LIKE :word')
+            //j'utilise set parameter pour que la variable soit sécurisé
+            ->setParameter('word', '%'.$word.'%')
+            ->getQuery();
+
+        //j'execute puis je retourne le résultat
+        $results = $query->getResult();
+        return $results;
+    }
 }
