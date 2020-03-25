@@ -1,5 +1,6 @@
 <?php
-
+//le fichier est crée grace a doctrine en ligne commande make:entity
+//doctrine:migration:migrate
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
