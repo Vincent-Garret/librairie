@@ -49,11 +49,13 @@ class AuthorController extends AbstractController
             'authors' => $authors
         ]);
     }
+
     /**
      * @route("/author/insert", name="author_insert")
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function insertBook(EntityManagerInterface $entityManager, Request $request)
     {
@@ -68,8 +70,8 @@ class AuthorController extends AbstractController
         //je set mes parametres de l'auteur en utilisant les seteur de mon entité
         $author->setName($name);
         $author->setFirstName($firstName);
-        $author->setBirthDate($birthDate);
-        $author->setDeathDate($deathDate);
+        $author->setBirthDate(new \DateTime($birthDate));
+        $author->setDeathDate(new \DateTime($deathDate));
         $author->setBiography($biography);
 
         //j'utilise entitymanager pour sauvegarder mon entité
