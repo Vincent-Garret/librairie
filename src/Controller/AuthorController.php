@@ -65,7 +65,7 @@ class AuthorController extends AbstractController
         $birthDate = $request->query->get('birthDate');
         $deathDate = $request->query->get('deathDate');
         $biography = $request->query->get('biography');
-        //je set mes parametres du livre en utilisant les seteur de mon entité
+        //je set mes parametres de l'auteur en utilisant les seteur de mon entité
         $author->setName($name);
         $author->setFirstName($firstName);
         $author->setBirthDate($birthDate);

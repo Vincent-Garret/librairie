@@ -3,6 +3,7 @@
     <div class = "article">
         <h1>{{ authors.name|upper}}</h1>
         <p>{{ authors.firstName|upper }}</p>
+        //je met un date a mon twig sinon ca me pete une erreur comme quoi il peut pas lire une date
         <p>{{ authors.birthDate|date }}</p>
         <p>{{ authors.deathDate|date }}</p>
         <p>{{ authors.biography }}</p>
