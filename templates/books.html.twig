@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
     {% block content %}
+        <form action="{{ path ('book_search') }}" method="get">
+            <input type="search" name="search">
+            <input type="submit" value="rechercher">
+        </form>
         <div class=" articles">
         {% for book in books %}
             <div class = "article">
