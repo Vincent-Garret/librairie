@@ -2,9 +2,9 @@
 {% block content %}
     <div class = "article">
         <h1>{{ authors.name|upper}}</h1>
-        <p>{{ authors.fistName|upper }}</p>
-        <p>{{ authors.birthDate }}</p>
-        <p>{{ authors.deathDate }}</p>
+        <p>{{ authors.firstName|upper }}</p>
+        <p>{{ authors.birthDate|date }}</p>
+        <p>{{ authors.deathDate|date }}</p>
         <p>{{ authors.biography }}</p>
     </div>
 {% endblock %}
