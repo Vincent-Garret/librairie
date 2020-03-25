@@ -76,7 +76,7 @@ class Author
         return $this->birthDate;
     }
 
-    public function setBirthDate(int $birthDate): self
+    public function setBirthDate(\DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
 
