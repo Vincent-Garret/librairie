@@ -116,7 +116,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @route("admin/author/search", name="admin_author_search")
+     * @route("/admin/author/search", name="admin_author_search")
      * @param AuthorRepository $authorRepository
      * @param Request $request
      * @return Response
@@ -127,7 +127,7 @@ class AuthorController extends AbstractController
 
         $authors = $authorRepository->getByWordInBiography($search);
 
-        return $this->render('admin/&"ésearch.author.html.twig', [
+        return $this->render('admin/search.author.html.twig', [
             'authors' => $authors,
             'search' => $search
 
