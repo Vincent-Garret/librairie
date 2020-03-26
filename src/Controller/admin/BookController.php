@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 // je fais un "use" vers le namespace (qui correspond au chemin) de la classe "Route"
 // ça correspond à un import ou un require en PHP
@@ -19,7 +19,7 @@ class BookController extends AbstractController
 {
 
     /**
-     * @Route("/books", name="books")
+     * @Route("/admin/books", name="admin_books")
      *
      * on utilise l'"autowire" de Symfony pour demander à Symfony
      * d'instancier la classe BookRepository dans la variable $bookRepository.
@@ -32,27 +32,27 @@ class BookController extends AbstractController
         // qui me permet de sélectionner les livres en bdd
         $books = $bookRepository->findAll();
 
-        return $this->render('books.html.twig', [
+        return $this->render('admin/books.html.twig', [
             'books' => $books
         ]);
 
     }
     //je fais une nouvelle route avec une wild card
     /**
-     * @route("/book/show/{id}", name="book")
+     * @route("/admin/book/show/{id}", name="admin_book")
      */
     public function book(BookRepository $bookRepository, $id)
     {
         //je viens récuperer mes données exactement comme precedement
         $books = $bookRepository->find($id);
 
-            return $this->render('book.html.twig', [
+            return $this->render('admin/book.html.twig', [
                 'books' => $books
         ]);
     }
 
     /**
-     * @route("/book/insert", name="book_insert")
+     * @route("/admin/book/insert", name="admin_book_insert")
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
@@ -79,7 +79,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * @route("/book/delete/{id}", name="book_delete")
+     * @route("admin/book/delete/{id}", name="admin_book_delete")
      * @param BookRepository $bookRepository
      * @param EntityManagerInterface $entityManager
      * @param $id
@@ -99,7 +99,7 @@ class BookController extends AbstractController
         return new Response('livre supprimé');
     }
     /**
-     * @route("book/update/{id}", name="book_update")
+     * @route("admin/book/update/{id}", name="admin_book_update")
      */
     public function updateBook(BookRepository $bookRepository, $id, EntityManagerInterface $entityManager)
     {
@@ -116,7 +116,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * @route("/book/search", name="book_search")
+     * @route("/admin/book/search", name="admin_book_search")
      */
     public  function searchByResume(BookRepository $bookRepository, Request $request)
     {
@@ -124,7 +124,7 @@ class BookController extends AbstractController
 
         $books = $bookRepository->getByWordInResume($search);
 
-        return $this->render('search.html.twig', [
+        return $this->render('admin/search.html.twig', [
             'books' => $books,
             'search' => $search
 

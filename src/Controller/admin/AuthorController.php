@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 // je fais un "use" vers le namespace (qui correspond au chemin) de la classe "Route"
 // ça correspond à un import ou un require en PHP
@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AuthorController extends AbstractController
 {
     /**
-     * @Route("/authors", name="authors")
+     * @Route("/admin/authors", name="admin_authors")
      *
      * on utilise l'"autowire" de Symfony pour demander à Symfony
      * d'instancier la classe BookRepository dans la variable $bookRepository.
@@ -31,27 +31,27 @@ class AuthorController extends AbstractController
         // qui me permet de sélectionner les livres en bdd
         $authors = $authorRepository->findAll();
 
-        return $this->render('authors.html.twig', [
+        return $this->render('admin/authors.html.twig', [
             'authors' => $authors
         ]);
 
     }
     //je fais une nouvelle route avec une wild card
     /**
-     * @route("/author/show/{id}", name="author")
+     * @route("/admin/author/show/{id}", name="admin_author")
      */
     public function author(AuthorRepository $authorRepository, $id)
     {
         //je viens récuperer mes données exactement comme precedement
         $authors = $authorRepository->find($id);
 
-        return $this->render('author.html.twig', [
+        return $this->render('admin/author.html.twig', [
             'authors' => $authors
         ]);
     }
 
     /**
-     * @route("/author/insert", name="author_insert")
+     * @route("/admin/author/insert", name="admin_author_insert")
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
@@ -80,7 +80,7 @@ class AuthorController extends AbstractController
         return new Response('auteur enregistré');
     }
     /**
-     * @route("/author/delete/{id}", name="author_delete")
+     * @route("/admin/author/delete/{id}", name="admin_author_delete")
      * @param EntityManagerInterface $entityManager
      * @param $id
      * @return Response
@@ -99,7 +99,7 @@ class AuthorController extends AbstractController
         return new Response('auteur supprimé');
     }
     /**
-     * @route("author/update/{id}", name="author_update")
+     * @route("/admin/author/update/{id}", name="admin_author_update")
      */
     public function updateAuthor(AuthorRepository $authorRepository, $id, EntityManagerInterface $entityManager)
     {
@@ -116,7 +116,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @route("/author/search", name="author_search")
+     * @route("admin/author/search", name="admin_author_search")
      * @param AuthorRepository $authorRepository
      * @param Request $request
      * @return Response
@@ -127,7 +127,7 @@ class AuthorController extends AbstractController
 
         $authors = $authorRepository->getByWordInBiography($search);
 
-        return $this->render('search.author.html.twig', [
+        return $this->render('admin/&"ésearch.author.html.twig', [
             'authors' => $authors,
             'search' => $search
 

@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
     {% block content %}
-        <form action="{{ path ('book_search') }}" method="get">
+        <form action="{{ path ('admin_book_search') }}" method="get">
             <input type="search" name="search">
             <input type="submit" value="rechercher">
         </form>
@@ -11,11 +11,11 @@
                 <p>Auteur : {{ book.author|upper }}</p>
                 <p>Resumé : {{ book.resume }}</p>
                 <p>{{ book.nbPages }}</p>
-                <a href="{{ path ('book', {'id': book.id }) }}">Details</a>
+                <a href="{{ path ('admin_book', {'id': book.id }) }}">Details</a>
                 <br/>
-                <a href="{{ path ('book_delete', {'id': book.id }) }}">effacer livre</a>
+                <a href="{{ path ('admin_book_delete', {'id': book.id }) }}">effacer livre</a>
                 <br/>
-                <a href="{{ path ('book_update', {'id': book.id }) }}">modifier titre livre</a>
+                <a href="{{ path ('admin_book_update', {'id': book.id }) }}">modifier titre livre</a>
             </div>
         {% endfor %}
         </div>
