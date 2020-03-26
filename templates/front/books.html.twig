@@ -1,0 +1,19 @@
+{% extends 'admin/base.html.twig' %}
+    {% block content %}
+        <form action="{{ path ('book_search') }}" method="get">
+            <input type="search" name="search">
+            <input type="submit" value="rechercher">
+        </form>
+        <div class=" articles">
+            {% for book in books %}
+                <div class = "article">
+                    <h1>{{ book.title|upper }}</h1>
+                    <p>Auteur : {{ book.author|upper }}</p>
+                    <p>Resumé : {{ book.resume }}</p>
+                    <p>{{ book.nbPages }}</p>
+                    <a href="{{ path ('book', {'id': book.id }) }}">Details</a>
+                    <br/>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
