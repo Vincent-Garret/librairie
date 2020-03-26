@@ -11,7 +11,7 @@
 <body>
     <header>
         <div>
-            <img src="https://lh3.googleusercontent.com/proxy/jR3kqoHgwWrJOgJAxvAxGztmS5MydB5tPuOKyzQJQZJLHhOgkNC2kNqXAiAfUW3fY8slHDzJHqidctvF-EiDu17SVNdJQW2WIyrtSho7VScM" alt="">
+            <img src="{{ asset('img/livres.png') }}" alt="">
         </div>
         <div>
             <ul>
@@ -21,7 +21,19 @@
             </ul>
         </div>
     </header>
-    {% block content %}
-    {% endblock %}
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    <footer>
+        <div>
+            <img src="{{ asset('img/livres.png') }}" alt="">
+        </div>
+            <ul>
+                <li>header</li>
+                <li>body</li>
+                <li>footer</li>
+            </ul>
+    </footer>
 </body>
 </html>
