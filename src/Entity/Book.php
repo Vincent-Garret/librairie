@@ -29,17 +29,18 @@ class Book
      */
     private $resume;
 
-    //je créer une colonne author de type string
-    /**
-     * @ORM\column(type="string", length=255)
-     */
-    private $author;
 
     //je créer une colonne de type int
     /**
      * @ORM\column(type="integer")
      */
+
     private $nbPages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Author")
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -54,10 +55,7 @@ class Book
     {
         return $this->resume;
     }
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
+
     public function getNbPages(): ?int
     {
         return $this->nbPages;
@@ -70,12 +68,26 @@ class Book
     {
         return $this->resume = $resume;
     }
-    public function setAuthor($author): ?string
-    {
-        return $this->author = $author;
-    }
+
     public function setNbPages($nbPages): ?int
     {
         return $this->nbPages = $nbPages;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author): void
+    {
+        $this->author = $author;
+    }
+
 }
