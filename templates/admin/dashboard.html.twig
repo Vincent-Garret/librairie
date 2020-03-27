@@ -1,6 +1,34 @@
 <main>
     Bienvenue sur l'admin ! Vous pouvez gerer ici vos auteurs et vos livres
 </main>
+<h2>Les derniers livres</h2>
+{% for book in books %}
+    <div class = "article">
+        <h1>{{ book.title|upper }}</h1>
+        <p>Auteur : {{ book.author.name|upper }}</p>
+        <p>Resumé : {{ book.resume }}</p>
+        <p>{{ book.nbPages }}</p>
+        <a href="{{ path ('admin_book', {'id': book.id }) }}">Details</a>
+        <br/>
+        <a href="{{ path ('admin_book_delete', {'id': book.id }) }}">effacer livre</a>
+        <br/>
+        <a href="{{ path ('admin_book_update', {'id': book.id }) }}">modifier titre livre</a>
+    </div>
+{% endfor %}
+{% for author in authors %}
+<div class = "article">
+    <h1>{{ author.name|upper }}</h1>
+    <p>{{ author.firstName|upper }}</p>
+    <p>{{ author.birthDate|date('d-m-Y') }}</p>
+    <p>{{ author.deathDate|date('d-m-Y') }}</p>
+    <p>{{ author.biography }}</p>
+    <a href="{{ path ('admin_author', {'id': author.id }) }}">Details</a>
+    <br/>
+    <a href="{{ path ('admin_author_delete', {'id': author.id }) }}">effacer author</a>
+    <br/>
+    <a href="{{ path ('admin_author_update', {'id': author.id }) }}">modifier nom auteur</a>
+    <br>
+    {% endfor %}
 <aside>
     <a href="{{ path('admin_books') }}">livres</a>
     <a href="{{ path('admin_authors') }}">auteurs</a>
