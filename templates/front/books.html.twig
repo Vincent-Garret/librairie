@@ -4,9 +4,9 @@
             <input type="search" name="search">
             <input type="submit" value="rechercher">
         </form>
-        <div class=" articles">
+        <div class=" articles" id="articles">
             {% for book in books %}
-                <div class = "article">
+                <div class = "article" >
                     <h1>{{ book.title|upper }}</h1>
                     <p>Auteur : {{ book.author|upper }}</p>
                     <p>Resumé : {{ book.resume }}</p>
