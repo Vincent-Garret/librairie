@@ -17,7 +17,12 @@
                     <a href="{{ path ('admin_author_delete', {'id': author.id }) }}">effacer author</a>
                     <br/>
                     <a href="{{ path ('admin_author_update', {'id': author.id }) }}">modifier nom auteur</a>
+                    <br>
+                    {% for book in author.books %}
+                        <p>{{ book.title }}</p>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            <p>Livres : </p>
         </div>
     {% endblock %}

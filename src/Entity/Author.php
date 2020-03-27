@@ -41,6 +41,12 @@ class Author
      * @ORM\Column(type="string", length=1000)
      */
     private $biography;
+    /**
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+     * //je specifie l'entité vers laquelle je fais ma relation
+     * et dans book je rappelle la propriété qui contient la relation
+     */
+    private $books;
 
     public function getId(): ?int
     {
@@ -103,4 +109,21 @@ class Author
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param mixed $books
+     */
+    public function setBooks($books): void
+    {
+        $this->books = $books;
+    }
+
 }

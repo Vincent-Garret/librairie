@@ -38,7 +38,7 @@ class Book
     private $nbPages;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Author")
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="books")
      */
     private $author;
 
@@ -89,5 +89,6 @@ class Book
     {
         $this->author = $author;
     }
+
 
 }
