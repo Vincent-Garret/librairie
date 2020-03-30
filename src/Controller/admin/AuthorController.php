@@ -7,6 +7,8 @@ namespace App\Controller\admin;
 // ça correspond à un import ou un require en PHP
 // pour pouvoir utiliser cette classe dans mon code
 use App\Entity\Author;
+use App\Form\AuthorType;
+use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -59,25 +61,25 @@ class AuthorController extends AbstractController
      */
     public function insertBook(EntityManagerInterface $entityManager, Request $request)
     {
-        //inserer un livre en BDD
-        //je fais un nouvel auteur en créant un enregistrement
+        //je declare la variable qui contient mon nouvel auteur
         $author = new Author();
-        $name = $request->query->get( 'name');
-        $firstName = $request->query->get( 'firstName');
-        $birthDate = $request->query->get('birthDate');
-        $deathDate = $request->query->get('deathDate');
-        $biography = $request->query->get('biography');
-        //je set mes parametres de l'auteur en utilisant les seteur de mon entité
-        $author->setName($name);
-        $author->setFirstName($firstName);
-        $author->setBirthDate(new \DateTime($birthDate));
-        $author->setDeathDate(new \DateTime($deathDate));
-        $author->setBiography($biography);
 
-        //j'utilise entitymanager pour sauvegarder mon entité
-        $entityManager->persist($author);
-        $entityManager->flush();
-        return new Response('auteur enregistré');
+        //je crée mon formulaire et je le lie avec le nouvel auteur et le BookType
+        $formAuthor = $this->createForm(AuthorType::class,$author);
+        //je sais plus trop
+        $formAuthor->handleRequest($request);
+        //je demande a mon formulaire $formAuthor de gerer les données
+        //de ma requete post
+        if($formAuthor->isSubmitted() && $formAuthor->isValid()){
+            //je persist et flush
+            //un peu comme commit et push
+            $entityManager->persist($author);
+            $entityManager->flush();
+        }
+        //je retourne sur ma page twig a laquelle je lie mon render
+        return $this->render('admin/insertAuthor.html.twig',[
+            'formAuthor' =>$formAuthor->createView()
+        ]);
     }
     /**
      * @route("/admin/author/delete/{id}", name="admin_author_delete")
@@ -132,6 +134,7 @@ class AuthorController extends AbstractController
             'search' => $search
 
         ]);
+
     }
 
 }

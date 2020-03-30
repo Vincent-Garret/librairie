@@ -56,6 +56,9 @@ class BookController extends AbstractController
 
     /**
      * @route("/admin/book/insert", name="admin_book_insert")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function insertBook(Request $request, EntityManagerInterface $entityManager)
     {
