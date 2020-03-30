@@ -10,6 +10,7 @@ use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,9 +57,23 @@ class BookController extends AbstractController
     /**
      * @route("/admin/book/insert", name="admin_book_insert")
      */
-    public function insertBook()
+    public function insertBook(Request $request, EntityManagerInterface $entityManager)
     {
-        $formBook = $this->createForm(BookType::class);
+        //je crée un nouveau livre pour le lier a mon formulaire
+        $book = new Book();
+
+        //je crée un formulaire qui est relié a mon nouveau livre
+        $formBook = $this->createForm(BookType::class, $book);
+
+        $formBook->handleRequest($request);
+        //je demande a mon formulaire $formBook de gerer les données
+        //de ma requete post
+        if($formBook->isSubmitted() && $formBook->isValid()){
+            //je persist le book
+            $entityManager->persist($book);
+            $entityManager->flush();
+        }
+
         return $this->render('admin/insert.html.twig', [
             'formBook' => $formBook->createView()
         ]);
