@@ -87,3 +87,20 @@ footer{
     background-color: #F1F1F1;
 }
 
+.form{
+    display: inline-flex;
+    flex-direction: column;
+    color: #222222;
+    border: 2px solid black;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+}
+
+.title,.nbPages,.resume{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+

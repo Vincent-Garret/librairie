@@ -1,1 +1,18 @@
-{{ form(formBook) }}
+{% extends 'admin/base.html.twig' %}
+    {% block content %}
+        <div class="form">
+        {{ form_start(formBook) }}
+                {{ form_label(formBook.title) }}
+                {{ form_widget(formBook.title,{'attr': {'class': 'form-control'}}) }}
+
+                {{ form_label(formBook.resume) }}
+                {{ form_widget(formBook.resume,{'attr': {'class': 'form-control'}}) }}
+
+                {{ form_label(formBook.nbPages) }}
+                {{ form_widget(formBook.nbPages,{'attr': {'class': 'form-control'}}) }}
+
+                {{ form_widget(formBook.submit,{'attr': {'class': 'btn btn-primary'}}) }}
+
+        {{ form_end(formBook) }}
+        </div>
+{% endblock %}

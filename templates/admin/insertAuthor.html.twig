@@ -1,1 +1,13 @@
-{{ form(formAuthor) }}
+{% extends 'admin/base.html.twig' %}
+{% block content %}
+    {{ form_start(formAuthor) }}
+
+    <div class="name">
+        {{ form_row(formAuthor.name) }}
+    </div>
+    <div class=""biography>
+        {{ form_row(formAuthor.biography) }}
+    </div>
+
+{{ form_end(formAuthor) }}
+{% endblock %}
