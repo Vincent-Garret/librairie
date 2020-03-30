@@ -105,18 +105,26 @@ class BookController extends AbstractController
     /**
      * @route("admin/book/update/{id}", name="admin_book_update")
      */
-    public function updateBook(BookRepository $bookRepository, $id, EntityManagerInterface $entityManager)
+    public function updateBook(BookRepository $bookRepository, $id, EntityManagerInterface $entityManager, Request $request)
     {
         //recuperer un livre en bdd
         $book = $bookRepository->find($id);
-        //avec l'entite recupéré on utilise les setteur pour modifier les champs souhaiter
-        $book->setTitle('titre modifié');
+        //je crée un formulaire qui est relié a mon nouveau livre
+        $formBook = $this->createForm(BookType::class, $book);
 
-        //on reenregistre le livre
-        $entityManager->persist($book);
-        $entityManager->flush();
+        $formBook->handleRequest($request);
+        //je demande a mon formulaire $formBook de gerer les données
+        //de ma requete post
+        if($formBook->isSubmitted() && $formBook->isValid()){
+            //je persist le book
+            $entityManager->persist($book);
+            $entityManager->flush();
+        }
 
-        return new Response('le livre a bien été modifié');
+        return $this->render('admin/insert.html.twig', [
+            'formBook' => $formBook->createView()
+        ]);
+
     }
 
     /**

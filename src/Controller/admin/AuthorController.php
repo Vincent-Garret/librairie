@@ -57,7 +57,7 @@ class AuthorController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function insertBook(EntityManagerInterface $entityManager, Request $request)
     {
@@ -103,18 +103,22 @@ class AuthorController extends AbstractController
     /**
      * @route("/admin/author/update/{id}", name="admin_author_update")
      */
-    public function updateAuthor(AuthorRepository $authorRepository, $id, EntityManagerInterface $entityManager)
+    public function updateAuthor(AuthorRepository $authorRepository, $id, EntityManagerInterface $entityManager, Request $request)
     {
         //recuperer un l'auteur en bdd
         $author = $authorRepository->find($id);
-        //avec l'entite recupéré on utilise les setteur pour modifier les champs souhaiter
-        $author->setName('nom modifié');
-
+        $formAuthor = $this->createForm(AuthorType::class,$author);
+        $formAuthor->handleRequest($request);
         //on reenregistre l'auteur
-        $entityManager->persist($author);
-        $entityManager->flush();
+        if($formAuthor->isSubmitted() && $formAuthor->isValid()){
+            //je persist et flush
+            //un peu comme commit et push
+            $entityManager->persist($author);
+            $entityManager->flush();
+        }
 
-        return new Response('l\'auteur a bien été modifié');
+        return $this->render('admin/insertAuthor.html.twig',[
+            'formAuthor' =>$formAuthor->createView()]);
     }
 
     /**

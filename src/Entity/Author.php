@@ -81,6 +81,8 @@ class Author
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
