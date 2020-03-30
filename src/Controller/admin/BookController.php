@@ -7,6 +7,7 @@ namespace App\Controller\admin;
 // ça correspond à un import ou un require en PHP
 // pour pouvoir utiliser cette classe dans mon code
 use App\Entity\Book;
+use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -54,32 +55,13 @@ class BookController extends AbstractController
 
     /**
      * @route("/admin/book/insert", name="admin_book_insert")
-     * @param AuthorRepository $authorRepository
-     * @param EntityManagerInterface $entityManager
-     * @param Request $request
-     * @return Response
      */
-    public function insertBook(authorRepository $authorRepository, EntityManagerInterface $entityManager, Request $request)
+    public function insertBook()
     {
-        //inserer un livre en BDD
-        //je fais un nouveau livre en créant un enregistrement
-        $book = new Book();
-        $title = $request->query->get( 'title');
-        $author = $request->query->get( 'author');
-        $nbPages = $request->query->get('nbPages');
-        $resume = $request->query->get('resume');
-        //je set mes parametres du livre en utilisant les seteur de mon entité
-        $book->setTitle($title);
-        //ne marche plsu acev set author puisque on a mis un idee
-        $author = $authorRepository->find(3);
-        $book->setAuthor($author);
-        $book->setNbPages($nbPages);
-        $book->setResume($resume);
-
-        //j'utilise entitymanager pour sauvegarder mon entité
-        $entityManager->persist($book);
-        $entityManager->flush();
-        return new Response('livre enregistré');
+        $formBook = $this->createForm(BookType::class);
+        return $this->render('admin/insert.html.twig', [
+            'formBook' => $formBook->createView()
+        ]);
     }
 
     /**
