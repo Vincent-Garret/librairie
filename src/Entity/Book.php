@@ -38,9 +38,11 @@ class Book
     private $nbPages;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Author", inversedBy="books")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
      */
     private $author;
+
+
 
     public function getId(): ?int
     {
@@ -74,21 +76,20 @@ class Book
         return $this->nbPages = $nbPages;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
+    public function getAuthor(): ?Author
     {
         return $this->author;
     }
 
-    /**
-     * @param mixed $author
-     */
-    public function setAuthor($author): void
+    public function setAuthor(?Author $author): self
     {
         $this->author = $author;
+
+        return $this;
     }
+
+   
+    
 
 
 }
