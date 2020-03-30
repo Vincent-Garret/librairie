@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
     {% block content %}
         <div class="form">
-        {{ form_start(formBook) }}
+        {{ form_start(formBook,{'attr': {'class': 'bg-light'}}) }}
                 {{ form_label(formBook.title) }}
                 {{ form_widget(formBook.title,{'attr': {'class': 'form-control'}}) }}
 
