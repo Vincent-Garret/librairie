@@ -15,7 +15,7 @@ a,
 h1,p{
     color: #803717;
 }
-.articles{
+.articles,articles2{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
