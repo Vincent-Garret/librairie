@@ -78,6 +78,7 @@ class BookController extends AbstractController
 
             //message flash
             $this->addFlash('success', 'votre livre a été enregistré');
+            return $this->redirectToRoute('admin_book_insert');
         }
 
         return $this->render('admin/insert.html.twig', [
@@ -105,6 +106,7 @@ class BookController extends AbstractController
         $this->addFlash('success', 'votre livre a été enregistré');
 
         return new Response('livre supprimé');
+
     }
     /**
      * @route("admin/book/update/{id}", name="admin_book_update")

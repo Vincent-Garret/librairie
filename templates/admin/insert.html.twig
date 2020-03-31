@@ -14,6 +14,10 @@
                 {{ form_widget(formBook.nbPages,{'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(formBook.nbPages) }}
 
+                {{ form_label(formBook.author) }}
+                {{ form_widget(formBook.author, {'attr': {'class' :'custom-select'}}) }}
+                {{ form_errors(formBook.author) }}
+
                 {{ form_widget(formBook.submit,{'attr': {'class': 'btn btn-primary'}}) }}
 
         {{ form_end(formBook) }}
