@@ -28,7 +28,10 @@ class Book
     //je créer une colonne resume
     /**
      * @ORM\Column(type="text")
-     * @assert\Length(min = 20)
+     * @assert\Length(min = 20,
+     * minMessage="Vous devez saisir un résumé de plus de 20 caracthères"
+     * )
+     *
      */
     private $resume;
 
