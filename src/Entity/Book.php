@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
@@ -20,12 +21,14 @@ class Book
     //je créer une colonne type string qui s'appelle title
     /**
      * @ORM\Column(type="string", length=255)
+     * @assert\NotBlank(message="Merci de remplir le titre")
      */
     private $title;
 
     //je créer une colonne resume
     /**
      * @ORM\Column(type="text")
+     * @assert\Length(min = 20)
      */
     private $resume;
 
@@ -33,6 +36,8 @@ class Book
     //je créer une colonne de type int
     /**
      * @ORM\column(type="integer")
+     * @assert\LessThan(3000)
+     * @assert\GreaterThan(20)
      */
 
     private $nbPages;
