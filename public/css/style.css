@@ -15,7 +15,7 @@ a,
 h1,p{
     color: #803717;
 }
-.articles,articles2{
+.articles{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -37,6 +37,7 @@ ul {
     width: 400px;
     list-style-type: none;
     font-size: 25px;
+    margin: auto;
 }
 main {
     background-image: url("../img/fond.jpg");
