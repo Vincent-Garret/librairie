@@ -75,6 +75,9 @@ class BookController extends AbstractController
             //je persist le book
             $entityManager->persist($book);
             $entityManager->flush();
+
+            //message flash
+            $this->addFlash('success', 'votre livre a été enregistré');
         }
 
         return $this->render('admin/insert.html.twig', [
@@ -97,8 +100,9 @@ class BookController extends AbstractController
         $book = $bookRepository->find($id);
 
         $entityManager->remove($book);
-
         $entityManager->flush();
+        //message flash
+        $this->addFlash('success', 'votre livre a été enregistré');
 
         return new Response('livre supprimé');
     }
@@ -119,6 +123,9 @@ class BookController extends AbstractController
             //je persist le book
             $entityManager->persist($book);
             $entityManager->flush();
+
+            //message flash
+            $this->addFlash('success', 'votre livre a été updaté');
         }
 
         return $this->render('admin/insert.html.twig', [

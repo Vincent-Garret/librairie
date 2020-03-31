@@ -2,7 +2,7 @@
 {% block content %}
     <div class = "article">
         <h1>{{ books.title|upper}}</h1>
-        <p>Auteur : {{ books.author.name|upper }}</p>
+        <p>Auteur : {{ book.author.name|upper }}</p>
         <p>Résumé : {{ books.resume }}</p>
         <p>{{ books.nbPages }}</p>
     </div>

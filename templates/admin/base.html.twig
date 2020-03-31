@@ -25,6 +25,12 @@
         <main>
             {% block content %}
             {% endblock %}
+            {#j'affiche le message flash si il existe#}
+            {%  for message in app.flashes('success') %}
+                <div class="flash">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </main>
     <footer>
         <div>
