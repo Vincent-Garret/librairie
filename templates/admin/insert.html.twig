@@ -15,6 +15,8 @@
                 {{ form_errors(formBook.nbPages) }}
 
                 {{ form_label(formBook.author) }}
+                {#Je rajoute un custom select pour avoir un menue deroulant (toute les value
+                sont générer par le form du symfony)#}
                 {{ form_widget(formBook.author, {'attr': {'class' :'custom-select'}}) }}
                 {{ form_errors(formBook.author) }}
 
