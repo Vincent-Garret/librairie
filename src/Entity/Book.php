@@ -95,7 +95,22 @@ class Book
 
         return $this;
     }
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $cover;
 
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
    
     
 

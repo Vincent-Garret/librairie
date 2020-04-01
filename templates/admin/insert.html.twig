@@ -20,7 +20,11 @@
                 {{ form_widget(formBook.author, {'attr': {'class' :'custom-select'}}) }}
                 {{ form_errors(formBook.author) }}
 
-                {{ form_widget(formBook.submit,{'attr': {'class': 'btn btn-primary'}}) }}
+                {{ form_label(formBook.cover)}}
+                {{ form_widget(formBook.cover, {'attr': {'class' :'custom-select'}}) }}
+                {{ form_errors(formBook.cover) }}
+
+            {{ form_widget(formBook.submit,{'attr': {'class': 'btn btn-primary'}}) }}
 
         {{ form_end(formBook) }}
         </div>

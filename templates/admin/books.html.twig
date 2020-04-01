@@ -11,6 +11,9 @@
                 <p>Auteur : {{ book.author.name|upper }}</p>
                 <p>Resumé : {{ book.resume }}</p>
                 <p>{{ book.nbPages }}</p>
+                <br>
+                <img src="{{ asset('img/cover/' ~ book.cover) }}" alt=""
+                <br>
                 <a href="{{ path ('admin_book', {'id': book.id }) }}">Details</a>
                 <br/>
                 <a href="{{ path ('admin_book_delete', {'id': book.id }) }}">effacer livre</a>

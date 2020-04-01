@@ -13,9 +13,11 @@ use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 // je créé ma classe BookController et je la nomme de la même manière que mon fichier
 class BookController extends AbstractController
@@ -60,7 +62,7 @@ class BookController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function insertBook(Request $request, EntityManagerInterface $entityManager)
+    public function insertBook(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
         //je crée un nouveau livre pour le lier a mon formulaire
         $book = new Book();
@@ -72,13 +74,28 @@ class BookController extends AbstractController
         //je demande a mon formulaire $formBook de gerer les données
         //de ma requete post
         if($formBook->isSubmitted() && $formBook->isValid()){
+            /** @var UploadedFile $coverFile */
+            $coverFile = $formBook->get('cover')->getData();
+                if($coverFile){
+                    $originalFilename = pathinfo($coverFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$coverFile->guessExtension();
+                    $coverFile = $formBook->get('cover')->getData();
+                    $coverFile->move(
+                        $this->getParameter('cover_directory'),
+                        $newFilename
+                        );
+                        $book->setCover($newFilename);
+                }
             //je persist le book
             $entityManager->persist($book);
             $entityManager->flush();
 
             //message flash
             $this->addFlash('success', 'votre livre a été enregistré');
-            return $this->redirectToRoute('admin_book_insert');
+
+            return $this->redirect($this->generateUrl('admin_books'));
         }
 
         return $this->render('admin/insert.html.twig', [
