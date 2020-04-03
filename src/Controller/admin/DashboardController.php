@@ -16,16 +16,21 @@ class DashboardController extends AbstractController
 {
     /**
      * @route("/admin", name="admin_dashboard")
+     * @param BookRepository $bookRepository
+     * @param AuthorRepository $authorRepository
+     * @return Response
      */
     public function adminDashboard(BookRepository $bookRepository,
                                    AuthorRepository $authorRepository)
     {
-        //$books = $bookRepository->findAll();
-        $lastAuthors = $authorRepository->findBy(array(), ['id'=>'DESC'], 2);
-        $lastBooks = $bookRepository->findBy(array(), ['id'=>'DESC'], 2);
+
+        $authors = $authorRepository;
+        $books = $bookRepository->findAll();
+        //$lastAuthors = $authorRepository->findBy(array(), ['id'=>'DESC'], 2);
+        //$lastBooks = $bookRepository->findBy(array(), ['id'=>'DESC'], 2);
         return $this->render('admin/dashboard.html.twig', [
-            'books' => $lastBooks,
-            'authors' => $lastAuthors
+            'books' => $books,
+            'authors' => $authors
         ]);
     }
 

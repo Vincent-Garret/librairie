@@ -17,3 +17,38 @@ function myFunction() {
         }
     }
 }
+
+//je m'assure que mon document soit chargé avant d'utiliser ma fonction
+$(document).ready(function () {
+$('.article').slice(0 , 3).show();
+$('.more').on('click', function () {
+    if ($(this).text() === 'voir plus') {
+        $('.article').show();
+        $(this).text('voir moins');
+    }
+    else{
+        $('.article').slice(3).hide();
+        $(this).text('voir plus');
+    }
+});
+$('.article').on('mouseenter', function () {
+    $(this).css('border-width', '10px')
+});
+$('.article').on('mouseleave', function () {
+    $(this).css('border-width', '3px')
+});
+
+    $('.main-newsletter').on('click', function () {
+        $('.modal').addClass('modal-show')
+
+    });
+    $('body').on('click', function (e) {
+        if(!$('.main-newsletter').is(e.target) &&
+            !$('.modal').is(e.target) &&
+            $('.modal').has(e.target).length === 0)
+        {
+            $('.modal').removeClass('modal-show');
+        }
+    })
+});
+

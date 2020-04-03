@@ -22,7 +22,14 @@
             </ul>
         </div>
     </header>
-        <main>
+        <main class="main">
+            <h1 class="main-title">Bienvenue sur le site</h1>
+            <p class="main-newsletter">Inscription à la newsletter</p>
+            <div class="modal">
+                <p>merci d'entrer votre email</p>
+                <input class="modal-text" type="text">
+                <input class="modal-submit" type="submit">
+            </div>
             {% block content %}
             {% endblock %}
             {#j'affiche le message flash si il existe#}
@@ -42,6 +49,10 @@
                 <li>footer</li>
             </ul>
     </footer>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
